@@ -12,8 +12,15 @@ CREATE TABLE statek(
 	max_ladownosc INT UNSIGNED
 );
 
+INSERT INTO statek(nazwa, rodzaj, data_wodowania, max_ladownosc) VALUES 
+	('niszczyciel', 'statek bitewny+4', '1686-01-01', 1000),
+	('pogromca', 'ulepszony statek+2', '1686-01-01', 250);
+
 ALTER TABLE postac ADD funkcja VARCHAR(45);
 
 UPDATE postac SET funkcja = 'kapitan' WHERE nazwa = 'Bjorn';
 
-ALTER TABLE postac ADD 
+ALTER TABLE postac ADD statek VARCHAR(45);
+ALTER TABLE postac ADD FOREIGN KEY (statek) REFERENCES statek(nazwa);
+
+UPDATE postac SET statek = 'niszczyciel' WHERE rodzaj = 'wiking';
