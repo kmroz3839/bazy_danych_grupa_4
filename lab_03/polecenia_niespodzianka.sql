@@ -9,5 +9,5 @@ CREATE TABLE izba(
 
 ALTER TABLE izba ADD kolor VARCHAR(20) DEFAULT 'czarny';
 
-INSERT INTO izba(adres_budynku, nazwa_izby, metraz, wlasciciel) VALUES
-	()
+INSERT INTO izba(adres_budynku, nazwa_izby, metraz, wlasciciel, kolor) VALUES
+	("ul. Oryginalna 2", "spizarnia", 30, 1, default);
