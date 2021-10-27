@@ -24,3 +24,7 @@ ALTER TABLE postac ADD statek VARCHAR(45);
 ALTER TABLE postac ADD FOREIGN KEY (statek) REFERENCES statek(nazwa);
 
 UPDATE postac SET statek = 'niszczyciel' WHERE rodzaj = 'wiking';
+UPDATE postac SET statek = 'niszczyciel' WHERE nazwa = 'Drozd';
+
+DELETE FROM izba WHERE nazwa_izby = 'spizarnia';
+DROP TABLE izba;
