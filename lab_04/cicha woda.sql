@@ -31,8 +31,12 @@ UPDATE postac SET statek = "niszczyciel" WHERE nazwa LIKE "%a%";
 
 UPDATE statek SET max_ladownosc = max_ladownosc*0.7 WHERE YEAR(data_wodowania) > 1900 AND YEAR(data_wodowania) < 2001;
 
-ALTER TABLE postac ADD CHECK (wiek <= 1000)
+ALTER TABLE postac ADD CHECK (wiek <= 1000);
 
 
 
 --zadanie 4
+
+CREATE TABLE marynarz LIKE postac;
+
+INSERT INTO marynarz SELECT * FROM postac WHERE statek IS NOT NULL;
