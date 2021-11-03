@@ -37,6 +37,8 @@ ALTER TABLE postac ADD CHECK (wiek <= 1000);
 
 --zadanie 4
 
+ALTER TABLE postac MODIFY COLUMN rodzaj ENUM('wiking', 'ptak', 'kobieta', 'syrena', 'waz')
+
 CREATE TABLE marynarz LIKE postac;
 
 INSERT INTO marynarz SELECT * FROM postac WHERE statek IS NOT NULL;
