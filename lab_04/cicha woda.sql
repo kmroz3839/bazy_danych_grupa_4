@@ -39,6 +39,33 @@ ALTER TABLE postac ADD CHECK (wiek <= 1000);
 
 ALTER TABLE postac MODIFY COLUMN rodzaj ENUM('wiking', 'ptak', 'kobieta', 'syrena', 'waz')
 
+INSERT INTO postac(id_postaci, nazwa, rodzaj, data_ur, wiek) VALUES
+	(default, "Loko", 'waz', "1655-01-01", 30);
+
 CREATE TABLE marynarz LIKE postac;
 
 INSERT INTO marynarz SELECT * FROM postac WHERE statek IS NOT NULL;
+
+
+--zadanie 5
+--a)
+UPDATE postac SET statek = NULL WHERE statek IS NOT NULL;
+
+--b)
+DELETE FROM postac WHERE nazwa = "Awanturnik";
+
+--c)
+DELETE FROM statek;
+
+--d)
+DROP TABLE statek;
+
+--e)
+CREATE TABLE zwierz(
+	id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	nazwa VARCHAR(55),
+	wiek INT UNSIGNED
+);
+
+--f)
+INSERT INTO zwierz(nazwa, wiek) SELECT nazwa, wiek FROM postac WHERE rodzaj = 'ptak' OR rodzaj = 'waz';
