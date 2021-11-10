@@ -60,4 +60,4 @@ SELECT SUM(waga*ilosc)*0.7 AS "wl.jedzenie", SUM(waga*ilosc)*0.3 AS "odpad" FROM
 SELECT * FROM zasob WHERE rodzaj IS NULL;
 
 --3.
-SELECT DISTINCT nazwa, rodzaj FROM zasob WHERE nazwa LIKE "ba%" OR nazwa LIKE "%os" ORDER BY rodzaj DESC;
+SELECT DISTINCT nazwa, rodzaj FROM zasob WHERE nazwa LIKE "ba%" OR nazwa LIKE "%os" ORDER BY nazwa ASC;
