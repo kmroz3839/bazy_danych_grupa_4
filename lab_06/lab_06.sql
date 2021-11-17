@@ -115,9 +115,4 @@ ON kreatura.rodzaj = najst.rodzaj
 LEFT JOIN
 	(SELECT rodzaj, MAX(dataUr) as nDataUr FROM kreatura GROUP BY rodzaj) najml
 ON kreatura.rodzaj = najml.rodzaj;
-	
-	
-	
-	
-	
-	
+--!
