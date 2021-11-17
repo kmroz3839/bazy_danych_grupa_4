@@ -95,3 +95,29 @@ SELECT CONCAT(k1.nazwa, " - ", k2.nazwa)
 FROM kreatura k1 
 INNER JOIN kreatura k2
 WHERE k1.idKreatury = k2.idKreatury - 5;
+
+
+--zadanie 5.
+--1.
+SELECT kreatura.rodzaj, AVG(zasob.waga)
+FROM kreatura
+NATURAL JOIN ekwipunek
+NATURAL JOIN zasob
+GROUP BY kreatura.rodzaj
+HAVING kreatura.rodzaj <> "malpa" AND kreatura.rodzaj <> "waz" AND zasob.ilosc < 30;
+
+--2
+SELECT DISTINCT kreatura.rodzaj, najst.nDataUr as "Data urodzenia najst.", najml.nDataUr as "Data urodzenia najml."
+FROM kreatura
+LEFT JOIN
+	(SELECT rodzaj, MIN(dataUr) as nDataUr FROM kreatura GROUP BY rodzaj) najst
+ON kreatura.rodzaj = najst.rodzaj
+LEFT JOIN
+	(SELECT rodzaj, MAX(dataUr) as nDataUr FROM kreatura GROUP BY rodzaj) najml
+ON kreatura.rodzaj = najml.rodzaj;
+	
+	
+	
+	
+	
+	
