@@ -19,6 +19,7 @@ SELECT * from kreatura
 INNER JOIN ekwipunek
 ON kreatura.idKreatury = ekwipunek.idKreatury;
 
+SELECT kreatura FROM kreatura k1 INNER JOIN kreatura k2;
 
 --###### zadania:
 
@@ -90,3 +91,7 @@ ORDER BY YEAR(kreatura.dataUr) DESC
 LIMIT 5;
 
 --3.
+SELECT CONCAT(k1.nazwa, " - ", k2.nazwa)
+FROM kreatura k1 
+INNER JOIN kreatura k2
+WHERE k1.idKreatury = k2.idKreatury - 5;
