@@ -43,9 +43,8 @@ SELECT nazwa, SUM(waga*ilosc) FROM zasob GROUP BY nazwa HAVING SUM(ilosc) > 4 AN
 
 --3.
 SELECT COUNT(nazwa) FROM (
-	SELECT z.nazwa FROM zasob z GROUP BY z.nazwa HAVING SUM(z.ilosc)>1
-);
---!
+	SELECT nazwa FROM zasob GROUP BY nazwa HAVING SUM(ilosc)>1
+)z2;
 
 
 --zadanie 3.
@@ -65,8 +64,29 @@ INNER JOIN zasob
 ON ekwipunek.idZasobu = zasob.idZasobu;
 
 --3.
-SELECT kreatura.nazwa, COUNT(ekwipunek.idKreatury) from kreatura
+SELECT kreatura.nazwa from kreatura
 LEFT JOIN ekwipunek
 ON kreatura.idKreatury = ekwipunek.idKreatury
 GROUP BY kreatura.nazwa HAVING COUNT(ekwipunek.idKreatury) = 0;
 
+
+--zadanie 4.
+--1.
+SELECT kreatura.nazwa, COUNT(zasob.nazwa)
+FROM kreatura 
+NATURAL JOIN ekwipunek, zasob
+WHERE kreatura.rodzaj = "wiking" AND YEAR(kreatura.dataUr) > 1670 AND YEAR(kreatura.dataUr) < 1681
+GROUP BY kreatura.nazwa;
+
+--2.
+SELECT kreatura.nazwa
+FROM kreatura 
+LEFT JOIN ekwipunek
+ON kreatura.idKreatury = ekwipunek.idKreatury
+INNER JOIN zasob
+ON ekwipunek.idZasobu = zasob.idZasobu
+WHERE zasob.rodzaj = "jedzenie"
+ORDER BY YEAR(kreatura.dataUr) DESC
+LIMIT 5;
+
+--3.
