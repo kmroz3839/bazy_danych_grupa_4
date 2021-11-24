@@ -52,3 +52,27 @@ LEFT JOIN uczestnicy ON uczestnicy.id_uczestnika = kreatura2.idKreatury
 LEFT JOIN wyprawa ON wyprawa.id_wyprawy = uczestnicy.id_wyprawy
 GROUP BY kreatura2.nazwa;
 
+
+
+--zadanie 4.
+
+--1.
+SELECT wyprawa.nazwa, SUM(LENGTH(etapy_wyprawy.dziennik))
+FROM wyprawa
+LEFT JOIN etapy_wyprawy ON wyprawa.id_wyprawy = etapy_wyprawy.idWyprawy
+GROUP BY wyprawa.nazwa
+HAVING SUM(LENGTH(etapy_wyprawy.dziennik)) < 400;
+
+--2.
+SELECT wyprawa.nazwa, AVG(zasob.waga*zasob.ilosc)
+FROM wyprawa
+LEFT JOIN uczestnicy ON uczestnicy.id_wyprawy = wyprawa.id_wyprawy
+LEFT JOIN kreatura2 ON kreatura2.idKreatury = uczestnicy.id_uczestnika
+LEFT JOIN ekwipunek ON ekwipunek.idKreatury = kreatura2.idKreatury
+LEFT JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu
+GROUP BY wyprawa.nazwa;
+
+
+
+--zadanie 5.
+
