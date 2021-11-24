@@ -35,3 +35,20 @@ GROUP BY wyprawa.nazwa;
 --2.
 --!
 
+
+
+--zadanie 3.
+
+--1.
+SELECT sektor.nazwa, COUNT(etapy_wyprawy.sektor) as "ilosc odwiedzin"
+FROM sektor
+LEFT JOIN etapy_wyprawy ON etapy_wyprawy.sektor =  sektor.id_sektora
+GROUP BY sektor.nazwa;
+
+--2.
+SELECT kreatura2.nazwa, IF(COUNT(wyprawa.id_wyprawy) = 0, "nie bral udzialu w wyprawie", "bral udzial w wyprawie") as "bral udzial?"
+FROM kreatura2
+LEFT JOIN uczestnicy ON uczestnicy.id_uczestnika = kreatura2.idKreatury
+LEFT JOIN wyprawa ON wyprawa.id_wyprawy = uczestnicy.id_wyprawy
+GROUP BY kreatura2.nazwa;
+
