@@ -20,3 +20,18 @@ FROM wyprawa
 LEFT JOIN uczestnicy ON wyprawa.id_wyprawy = uczestnicy.id_wyprawy
 LEFT JOIN ekwipunek ON ekwipunek.idKreatury = uczestnicy.id_uczestnika
 GROUP BY nazwa;
+
+
+
+--zadanie 2.
+
+--1.
+SELECT wyprawa.nazwa, GROUP_CONCAT(kreatura2.nazwa) AS uczestnicy
+FROM wyprawa
+LEFT JOIN uczestnicy ON wyprawa.id_wyprawy = uczestnicy.id_wyprawy
+LEFT JOIN kreatura2 ON uczestnicy.id_uczestnika = kreatura2.idKreatury
+GROUP BY wyprawa.nazwa;
+
+--2.
+--!
+
