@@ -65,13 +65,15 @@ GROUP BY wyprawa.nazwa
 HAVING SUM(LENGTH(etapy_wyprawy.dziennik)) < 400;
 
 --2.
-SELECT wyprawa.nazwa, AVG(zasob.waga*zasob.ilosc)
+SELECT uczestnicy.id_wyprawy, 
+	SUM(zasob.waga*zasob.ilosc) as s1,
+	COUNT(DISTINCT uczestnicy.id_uczestnika) as s2,
+	SUM(zasob.waga*zasob.ilosc) / COUNT(DISTINCT uczestnicy.id_uczestnika) as s3
 FROM wyprawa
-LEFT JOIN uczestnicy ON uczestnicy.id_wyprawy = wyprawa.id_wyprawy
-LEFT JOIN kreatura2 ON kreatura2.idKreatury = uczestnicy.id_uczestnika
-LEFT JOIN ekwipunek ON ekwipunek.idKreatury = kreatura2.idKreatury
+NATURAL JOIN uczestnicy
+LEFT JOIN ekwipunek ON ekwipunek.idKreatury = uczestnicy.id_uczestnika
 LEFT JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu
-GROUP BY wyprawa.nazwa;
+GROUP BY uczestnicy.id_wyprawy;
 
 
 
