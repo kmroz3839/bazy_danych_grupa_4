@@ -33,6 +33,7 @@ LEFT JOIN kreatura2 ON uczestnicy.id_uczestnika = kreatura2.idKreatury
 GROUP BY wyprawa.nazwa;
 
 --2.
+
 --!
 
 
@@ -76,3 +77,13 @@ GROUP BY wyprawa.nazwa;
 
 --zadanie 5.
 
+--1.
+
+SELECT kreatura2.nazwa, DATEDIFF(wyprawa.data_rozpoczecia, kreatura2.dataUr)
+FROM kreatura2
+LEFT JOIN uczestnicy ON uczestnicy.id_uczestnika = kreatura2.idKreatury
+LEFT JOIN wyprawa ON wyprawa.id_wyprawy = uczestnicy.id_wyprawy
+INNER JOIN etapy_wyprawy ON wyprawa.id_wyprawy = etapy_wyprawy.idWyprawy
+INNER JOIN 
+	(SELECT * FROM sektor WHERE nazwa = "Chatka dziadka") s2
+	ON etapy_wyprawy.sektor = s2.id_sektora;
