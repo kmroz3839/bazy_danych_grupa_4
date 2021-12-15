@@ -1,5 +1,5 @@
 
---z.1
+--zadania część 1
 
 --1.
 SELECT nazwisko FROM pracownik ORDER BY nazwisko ASC;
@@ -60,3 +60,25 @@ CREATE TABLE towary_powyzej_100 AS
 --12.
 CREATE TABLE pracownik_50_plus LIKE pracownik;
 INSERT INTO pracownik_50_plus (SELECT * FROM pracownik WHERE YEAR(NOW()) - YEAR(data_urodzenia) >= 50);
+
+
+
+--zadania część 2
+
+--1.
+SELECT imie, nazwisko, dzial.nazwa
+FROM pracownik
+INNER JOIN dzial ON dzial.id_dzialu = pracownik.dzial;
+
+--2.
+SELECT nazwa_towaru, nazwa_kategori, ilosc
+FROM towar
+LEFT JOIN kategoria ON towar.kategoria = kategoria.id_kategori
+LEFT JOIN stan_magazynowy ON towar.id_towaru = stan_magazynowy.towar
+ORDER BY ilosc DESC;
+
+--3.
+SELECT * FROM zamowienie
+LEFT JOIN status_zamowienia
+ON zamowienie.status_zamowienia = status_zamowienia.id_statusu_zamowienia
+WHERE nazwa_statusu_zamowienia = "anulowane";
