@@ -82,3 +82,44 @@ SELECT * FROM zamowienie
 LEFT JOIN status_zamowienia
 ON zamowienie.status_zamowienia = status_zamowienia.id_statusu_zamowienia
 WHERE nazwa_statusu_zamowienia = "anulowane";
+
+--4.
+SELECT * FROM klient
+RIGHT JOIN adres_klienta ON klient.id_klienta = adres_klienta.klient
+WHERE miejscowosc = "Olsztyn";
+
+--5.
+SELECT id_jednostki, nazwa FROM jednostka_miary
+LEFT JOIN stan_magazynowy ON stan_magazynowy.jm = jednostka_miary.id_jednostki
+WHERE stan_magazynowy.jm IS NULL;
+
+--6.
+SELECT numer_zamowienia, nazwa_towaru, ilosc, cena
+FROM zamowienie
+INNER JOIN pozycja_zamowienia ON pozycja_zamowienia.zamowienie = zamowienie.id_zamowienia
+LEFT JOIN towar ON pozycja_zamowienia.towar = towar.id_towaru
+WHERE YEAR(data_zamowienia) = 2018;
+
+--7.
+CREATE TABLE towary_full_info(
+	nazwa_towaru VARCHAR(255),
+	cena_zakupu DECIMAL(7,2),
+	kategoria VARCHAR(45),
+	ilosc DECIMAL(7,2),
+	jednostka_miary VARCHAR(45)
+);
+
+--8.
+SELECT * FROM pozycja_zamowienia
+INNER JOIN zamowienie ON pozycja_zamowienia.zamowienie = id_zamowienia
+ORDER BY data_zamowienia ASC
+LIMIT 5;
+
+--9.
+SELECT * FROM zamowienie
+LEFT JOIN status_zamowienia
+ON zamowienie.status_zamowienia = status_zamowienia.id_statusu_zamowienia
+WHERE nazwa_statusu_zamowienia <> "zrealizowane";
+
+--10.
+SELECT * FROM adres_klienta WHERE kod NOT LIKE '[0-9][0-9][-][0-9][0-9][0-9]';
