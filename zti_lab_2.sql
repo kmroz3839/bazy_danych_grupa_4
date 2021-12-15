@@ -33,3 +33,30 @@ LIMIT 10;
 SELECT * FROM pracownik
 ORDER BY pensja ASC
 LIMIT 5;
+
+--9
+SELECT * FROM towar
+WHERE nazwa_towaru NOT LIKE "%a%"
+ORDER BY cena_zakupu DESC
+LIMIT 10;
+
+--10.
+SELECT * FROM towar
+LEFT JOIN stan_magazynowy ON stan_magazynowy.towar = towar.id_towaru
+LEFT JOIN jednostka_miary ON stan_magazynowy.jm = jednostka_miary.id_jednostki
+WHERE nazwa = "szt"
+ORDER BY towar.nazwa_towaru ASC;
+
+SELECT * FROM towar
+LEFT JOIN stan_magazynowy ON stan_magazynowy.towar = towar.id_towaru
+LEFT JOIN jednostka_miary ON stan_magazynowy.jm = jednostka_miary.id_jednostki
+WHERE nazwa = "szt"
+ORDER BY towar.cena_zakupu DESC;
+
+--11.
+CREATE TABLE towary_powyzej_100 AS 
+(SELECT * FROM towar WHERE cena_zakupu >= 100);
+
+--12.
+CREATE TABLE pracownik_50_plus LIKE pracownik;
+INSERT INTO pracownik_50_plus (SELECT * FROM pracownik WHERE YEAR(NOW()) - YEAR(data_urodzenia) >= 50);
