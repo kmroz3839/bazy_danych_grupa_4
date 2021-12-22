@@ -122,4 +122,4 @@ ON zamowienie.status_zamowienia = status_zamowienia.id_statusu_zamowienia
 WHERE nazwa_statusu_zamowienia <> "zrealizowane";
 
 --10.
-SELECT * FROM adres_klienta WHERE kod NOT LIKE '[0-9][0-9][-][0-9][0-9][0-9]';
+SELECT * FROM adres_klienta WHERE kod NOT REGEXP '[0-9]{2}-[0-9]{3}';
