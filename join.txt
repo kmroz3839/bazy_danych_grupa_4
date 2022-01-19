@@ -1,0 +1,23 @@
+LEFT JOIN: one(from B) to many(from A)
+INNER JOIN: one to one
+RIGHT JOIN: one(from A) to many(from B)
+
+(A#() B)
+SELECT <list>
+FROM A
+LEFT JOIN B
+ON A.key = B.key
+WHERE B.key IS NULL
+
+(A ()#B)
+SELECT <list>
+FROM A
+RIGHT JOIN B
+ON A.key = B.key
+WHERE B.key IS NULL
+
+(A#(#)#B)
+SELECT <list>
+FROM A
+FULL OUTER JOIN B
+ON A.key = B.key
